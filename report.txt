@@ -1,0 +1,64 @@
+(omarghonima1@gmail.com, omar khaled mohamed ghonima ,58-1891 )  ( omar ahmed behiery 58-16880)  ( mohamed ayman mohamed abdelrahman elsayed 58-22010)   (Mazen emad 55-24457)   Team 100
+
+T0: AR <- PC .
+T1: IR <- M[AR], PC <- PC +1.
+T2:AR <- IR(0-11), decode IR(12-14).
+
+
+DIV
+D0T4: DR <- M[AR].
+D0T5: AC <- DR/AC, SC<-0 
+
+
+ADD
+D1T4: DR < - M[AR].
+D1T5: AC <- AC+DR，SC<-0.
+
+
+LDA
+D2T4: DR < - M[AR].
+D2T5: AC <- DR, SC <- 0.
+
+STA
+D3T4: M[AR] <- AC, SC <- 0.
+
+BUN
+D4T4: PC <- AR, SC <-0.
+
+MUL
+D5T4: DR <-M[AR］
+D5T5: AC <- AC*DR, SC<-0.
+
+ISZ
+D6T4: DR < - M[AR]
+D6T5: AC <- DR +1 
+D6T6: M[AR] <- AC, if DR =0 then PC <- PC +1
+
+LOADS:
+AC: T5D0+ T5D1+ T5D2+ T5D5+ T5D6
+DR: T4D0+ T4D1+ T4D2+ T4D5+ T4D6
+PC: D4T4 
+INC PC: T1 + (DR or 0)' &D6T6
+SC: T5D0+ T5D1+ T5D2+ T5D5 + T4D3+ T4D4)
+INC SC: (T5 (D0+D1+D2+D5) + T4(D3+D4))'
+AR: T0 +T2
+MEMORY WRITE: D6T6 + D3T4
+
+
+BUS SELECTION:
+X0: MEMORY READ: T4D0+ T4D1+ T4D2+ T4D5+ T4D6+ T1 
+X1: AR: D4T4 
+X2: PC: T0
+X3: AC: D3T4 + D6T6
+X4: DR: 0
+X5: TR: 0
+X7: IR: 0
+
+ALU:
+X1: D2T5
+X2: D6T5
+X3: D5T5
+X4: 0
+X5: D0T5
+X6: D1T5
+X7: 0
